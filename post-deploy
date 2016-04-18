@@ -37,12 +37,12 @@ slack_notify() {
 slack_payload() {
   local app="$1"
   local hook="$2"
-
+  local url=$(dokku url $app)
   cat <<JSON
 {
   "username": "dokku-slack",
   "icon_emoji": ":rocket:",
-  "text": "Deployed a new version of ${app}"
+  "text": "Deployed a new version of ${app} ${url}"
 }
 JSON
 }
